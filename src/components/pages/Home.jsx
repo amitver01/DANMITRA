@@ -10,7 +10,7 @@ const Home = () => {
           Join us in making a difference. Dānamitra is your platform for contributing to meaningful causes and campaigns. Together, we can create a better future.
         </p>
         <button className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md">
-          Get Started
+          Donate !!
         </button>
       </div>
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
