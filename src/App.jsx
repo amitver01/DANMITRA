@@ -3,7 +3,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from '../src/components/NavBar';
-import Home from '../src/components/pages/Home'; // Adjust path as needed
+import Home from '../src/components/pages/Home';
+import Campaign from '../src/components/pages/Campaign';
+import About from './components/pages/About';
+import Contact from './components/pages/Conatct'
 import Footer from './components/Footer';
 
 
@@ -13,7 +16,10 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Add other routes here */}
+        <Route path="/campaign" element={<Campaign/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/contact" element={<Contact/>} />
+        
       </Routes>
       <Footer/>
     </div>

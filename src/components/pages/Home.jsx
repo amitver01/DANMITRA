@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../Footer';
+
 const Home = () => {
   return (
     <div className="w-full h-screen mt-10 flex flex-col items-center justify-center bg-zinc-900 text-white">

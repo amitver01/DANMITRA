@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link for client-side navigation
+import { useNavigate, Link } from 'react-router-dom';
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleLogoClick = () => {
     navigate('/'); // Navigate to the homepage
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-20 px-4 py-4 md:px-8 md:py-6 flex justify-between items-center bg-zinc-900  backdrop-blur-md z-50 transition-all ease-in-out duration-300">
+    <div className="fixed top-0 left-0 w-full h-20 px-4 py-4 md:px-8 md:py-6 flex justify-between items-center bg-zinc-900 backdrop-blur-md z-50 transition-all ease-in-out duration-300">
       <div 
         className="text-white text-2xl font-bold cursor-pointer"
         onClick={handleLogoClick}
@@ -27,10 +27,10 @@ function NavBar() {
       </div>
       <div className="hidden md:flex md:items-center md:gap-8">
         <div className="flex flex-col md:flex-row items-center md:gap-8">
-          {["Campaigns", "About", "Contact"].map((item, index) => (
+          {["Campaign", "About", "Contact"].map((item, index) => (
             <Link 
               key={index} 
-              to={`#${item.toLowerCase()}`} 
+              to={`/${item.toLowerCase()}`} // Change to proper route
               className="text-white text-base md:text-lg font-light hover:underline"
             >
               {item}
@@ -49,7 +49,7 @@ function NavBar() {
           {["Campaign", "About", "Contact"].map((item, index) => (
             <Link 
               key={index} 
-              to={`#${item.toLowerCase()}`} 
+              to={`/${item.toLowerCase()}`} // Change to proper route
               className="text-white text-lg font-light hover:underline mb-4"
               onClick={() => setIsOpen(false)}
             >
