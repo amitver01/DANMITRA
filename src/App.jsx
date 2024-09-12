@@ -8,7 +8,8 @@ import Campaign from '../src/components/pages/Campaign';
 import About from './components/pages/About';
 import Contact from './components/pages/Conatct'
 import Footer from './components/Footer';
-
+import Login from './components/pages/Login'
+import SignUp from './components/pages/SignUp'
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/campaign" element={<Campaign/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
-        
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
       </Routes>
       <Footer/>
     </div>

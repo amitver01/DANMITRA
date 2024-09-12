@@ -10,7 +10,7 @@ const Home = () => {
         <p className="text-lg mb-6 max-w-xl mx-auto">
           Join us in making a difference. Dānamitra is your platform for contributing to meaningful causes and campaigns. Together, we can create a better future.
         </p>
-        <Link to="/donate" className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md inline-block">
+        <Link to="/login" className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md inline-block">
           Donate !!
         </Link>
       </div>
