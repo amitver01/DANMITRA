@@ -8,7 +8,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('donors'); // New state for selecting role
-  const [redirect, setRedirect] = useState('');
+  const [redirect, setRedirect] = useState(''); // State for redirection
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -25,27 +25,36 @@ export default function LoginPage() {
     ev.preventDefault();
 
     try {
-      const { data } = await axios.post(
-        `http://localhost:4000/api/${role}/login`, // Dynamic role-based endpoint
+   
+      const response = await axios.post(
+        `http://localhost:4000/api/${role}/login`, 
         { email, password },
         { withCredentials: true }
       );
+      const { token, donor } = response.data;
+
       alert('Login success');
 
+      // Handle "Remember Me" functionality
       if (rememberMe) {
         localStorage.setItem('rememberedEmail', email);
         localStorage.setItem('rememberedpass', password);
       } else {
         localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('rememberedpass');
       }
 
-      setRedirect(true);
+      // Store token and donorId in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('donorId', donor._id);
+
+      // Set redirect to navigate
+      setRedirect('/profile'); 
     } catch (e) {
       console.error('Login failed:', e.response ? e.response.data : e.message);
       alert('Login failed');
     }
   }
-
   if (redirect) {
     return <Navigate to={'/'} />;
   }

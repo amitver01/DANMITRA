@@ -27,7 +27,7 @@ function NavBar() {
       </div>
       <div className="hidden md:flex md:items-center md:gap-8">
         <div className="flex flex-col md:flex-row items-center md:gap-8">
-          {["Campaign", "About", "Contact"].map((item, index) => (
+          {["Campaign", "About", "Contact" , "Profile"].map((item, index) => (
             <Link 
               key={index} 
               to={`/${item.toLowerCase()}`} // Change to proper route
@@ -46,7 +46,7 @@ function NavBar() {
           >
             ×
           </button>
-          {["Campaign", "About", "Contact"].map((item, index) => (
+          {["Campaign", "About", "Contact" , "Profile"].map((item, index) => (
             <Link 
               key={index} 
               to={`/${item.toLowerCase()}`} // Change to proper route
