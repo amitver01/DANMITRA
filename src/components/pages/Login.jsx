@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie'; // Import js-cookie
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,14 +26,13 @@ export default function LoginPage() {
     ev.preventDefault();
 
     try {
-   
       const response = await axios.post(
         `http://localhost:4000/api/${role}/login`, 
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true } // Ensure cookies are sent with requests
       );
-      const { token, donor } = response.data;
 
+      const { token, donor } = response.data;
       alert('Login success');
 
       // Handle "Remember Me" functionality
@@ -44,9 +44,9 @@ export default function LoginPage() {
         localStorage.removeItem('rememberedpass');
       }
 
-      // Store token and donorId in localStorage
-      localStorage.setItem('token', token);
-      localStorage.setItem('donorId', donor._id);
+      // Store token and donorId in cookies
+      Cookies.set('token', token , { expires: 1 }); // Set cookie to expire in 1 day
+      Cookies.set('donorId', donor._id, { expires: 1 });
 
       // Set redirect to navigate
       setRedirect('/profile'); 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie'; 
 
 const Profile = () => {
   const [donor, setDonor] = useState(null); // State to store donor data
@@ -8,10 +9,11 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchDonorDetails = async () => {
-      const token = localStorage.getItem('token'); // Get token from localStorage
-      const donorId = localStorage.getItem('donorId'); // Get donor _id from localStorage
-
-      if (!token || !donorId) {
+      const token = Cookies.get('token'); // Get token from cookies
+      const donorId = Cookies.get('donorId'); // Get donor _id from cookies
+      console.log("TOKEN = "+ token);
+      console.log(donorId)
+      if (!donorId) {
         setError('Authentication details are missing');
         setLoading(false);
         return;
