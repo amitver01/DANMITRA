@@ -1,7 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';  // Import js-cookie
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  // Function to handle redirection based on token cookie presence
+  const handleDonateClick = () => {
+    const token = Cookies.get('token');  // Get token from cookies
+
+    if (token) {
+      navigate('/payment');  // Redirect to payment if token exists
+    } else {
+      navigate('/login');  // Otherwise, redirect to login page
+    }
+  };
+
   return (
     <div className="w-full h-screen mt-10 flex flex-col items-center justify-center bg-zinc-900 text-white">
       {/* Hero Section */}
@@ -10,10 +24,15 @@ const Home = () => {
         <p className="text-lg mb-6 max-w-xl mx-auto">
           Join us in making a difference. Dānamitra is your platform for contributing to meaningful causes and campaigns. Together, we can create a better future.
         </p>
-        <Link to="/login" className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md inline-block">
+        <button 
+          onClick={handleDonateClick} 
+          className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md inline-block"
+        >
           Donate !!
-        </Link>
+        </button>
       </div>
+
+      {/* Other Sections */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
         <Link to="/campaign" className="bg-zinc-800 p-6 rounded-lg shadow-md text-center hover:bg-zinc-700 transition-colors duration-300">
           <h2 className="text-xl font-semibold mb-2">Campaigns</h2>

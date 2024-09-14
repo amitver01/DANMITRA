@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie'; 
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 
 const Profile = () => {
   const [donor, setDonor] = useState(null); // State to store donor data
   const [loading, setLoading] = useState(true); // State to track loading
   const [error, setError] = useState(null); // State to handle errors
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchDonorDetails = async () => {
-      const token = Cookies.get('token'); // Get token from cookies
-      const donorId = Cookies.get('donorId'); // Get donor _id from cookies
-      console.log("TOKEN = "+ token);
-      console.log(donorId)
+      const token = Cookies.get('token');
+      const donorId = Cookies.get('userID'); // Get donor ID from context
+     // console.log(donorId);
       if (!donorId) {
+        navigate('/login')
         setError('Authentication details are missing');
         setLoading(false);
         return;
@@ -39,7 +41,7 @@ const Profile = () => {
     };
 
     fetchDonorDetails();
-  }, []); // Empty dependency array ensures it only runs once
+  }, []); // Add user details as dependencies
 
   if (loading) {
     return (
@@ -64,6 +66,11 @@ const Profile = () => {
       </div>
     );
   }
+  const handleLogout = () => {
+    Cookies.remove('token'); // Remove the token cookie
+    Cookies.remove('userID'); // Remove the userID cookie
+    navigate('/'); // Optionally navigate to the homepage after logout
+  };
 
   return (
     <div className='w-full h-full bg-fixed bg-zinc-900 pt-20'>
@@ -80,6 +87,11 @@ const Profile = () => {
           <strong>Created At: </strong> {donor.createdAt}
         </div>
       </div>
+      <button
+        onClick={handleLogout}
+        className="text-white text-lg font-light hover:underline">
+        Logout
+       </button>
     </div>
   );
 };

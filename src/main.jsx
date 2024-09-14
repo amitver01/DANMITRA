@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+
 import { createRoot } from 'react-dom/client'
 
 import React from 'react';
@@ -8,6 +8,8 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <Router>
-    <App />
-  </Router>,
+    
+      <App />
+    
+  </Router>
 )

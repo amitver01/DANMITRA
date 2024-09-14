@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'; // Import js-cookie
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +13,8 @@ export default function LoginPage() {
   const [redirect, setRedirect] = useState(''); // State for redirection
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  
+  const { login } = useUser(); // Destructure login from UserContext
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('rememberedEmail');
@@ -34,6 +37,9 @@ export default function LoginPage() {
 
       const { token, donor } = response.data;
       alert('Login success');
+      console.log(donor);
+      // After successful login
+    
 
       // Handle "Remember Me" functionality
       if (rememberMe) {
@@ -46,7 +52,9 @@ export default function LoginPage() {
 
       // Store token and donorId in cookies
       Cookies.set('token', token , { expires: 1 }); // Set cookie to expire in 1 day
-      Cookies.set('donorId', donor._id, { expires: 1 });
+      Cookies.set('userID' , donor._id , {expires: 1});
+      // Update UserContext with user details
+      login(donor); // Call login method from UserContext and pass user data
 
       // Set redirect to navigate
       setRedirect('/profile'); 
@@ -55,8 +63,9 @@ export default function LoginPage() {
       alert('Login failed');
     }
   }
+
   if (redirect) {
-    return <Navigate to={'/'} />;
+    return <Navigate to={redirect} />;
   }
 
   return (
