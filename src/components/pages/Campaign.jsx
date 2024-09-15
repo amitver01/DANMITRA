@@ -47,7 +47,7 @@ const Campaign = () => {
 
   return (
     <div className='w-full h-full bg-zinc-700 text-slate-400 p-8'>
-      <h1 className='m-20 text-5xl font-bold text-white mb-8 text-center'>Campaigns</h1>
+      <h1 className='m-20 text-5xl font-bold text-white mb-8 text-center'>Campaignss</h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
         {campaigns.map((campaign) => (
           <div key={campaign.id} className='bg-zinc-800 rounded-lg shadow-lg p-6'>
