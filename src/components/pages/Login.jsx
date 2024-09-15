@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   
-  const { login } = useUser(); // Destructure login from UserContext
+ // Destructure login from UserContext
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('rememberedEmail');
@@ -54,7 +54,7 @@ export default function LoginPage() {
       Cookies.set('token', token , { expires: 1 }); // Set cookie to expire in 1 day
       Cookies.set('userID' , donor._id , {expires: 1});
       // Update UserContext with user details
-      login(donor); // Call login method from UserContext and pass user data
+  // Call login method from UserContext and pass user data
 
       // Set redirect to navigate
       setRedirect('/profile'); 

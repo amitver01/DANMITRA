@@ -7,6 +7,7 @@ const Campaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const navigate = useNavigate();  // Move this above any conditionals
   
   // Function to fetch campaigns

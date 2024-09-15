@@ -45,7 +45,7 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className='w-full h-full bg-fixed bg-zinc-900 pt-20 text-white text-center'>
+      <div className='w-full h-full  bg-zinc-900 pt-20 text-white text-center'>
         Loading donor details...
       </div>
     );
@@ -73,7 +73,7 @@ const Profile = () => {
   };
 
   return (
-    <div className='w-full h-full bg-fixed bg-zinc-900 pt-20'>
+    <div className='w-full h-full bg-zinc-900 pt-20'>
       <div className='text-blue-800 text-center text-4xl font-semibold mb-4'>Profile</div>
       <div className='max-w-md mx-auto bg-zinc-800 rounded-lg shadow-lg text-white p-4'>
         <h2 className='text-2xl text-center font-semibold mb-4'>Donor Information</h2>
@@ -86,12 +86,13 @@ const Profile = () => {
         <div className='mb-3'>
           <strong>Created At: </strong> {donor.createdAt}
         </div>
-      </div>
-      <button
+        <button
         onClick={handleLogout}
-        className="text-white text-lg font-light hover:underline">
+        className="text-white text-lg bg-zinc-500 p-1 font-semibold-light hover:bg-sky-700 rounded-lg shadow-lg">
         Logout
        </button>
+      </div>
+
     </div>
   );
 };
