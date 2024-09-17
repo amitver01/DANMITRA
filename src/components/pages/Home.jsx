@@ -10,7 +10,7 @@ const Home = () => {
     const token = Cookies.get('token');  // Get token from cookies
 
     if (token) {
-      navigate('/payment');  // Redirect to payment if token exists
+      navigate('/campaign');  // Redirect to payment if token exists
     } else {
       navigate('/login');  // Otherwise, redirect to login page
     }
