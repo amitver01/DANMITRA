@@ -8,12 +8,12 @@ const Campaign = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();  // Move this above any conditionals
+  const navigate = useNavigate(); 
   
   // Function to fetch campaigns
   const fetchCampaigns = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/campaign/campaign'); // Replace with your actual API endpoint
+      const response = await axios.get('http://localhost:4000/api/campaign/campaign'); 
       setCampaigns(response.data);
       setLoading(false);
     } catch (err) {
@@ -21,10 +21,33 @@ const Campaign = () => {
       setLoading(false);
     }
   };
-
+  const deleteCampaign = async (campaignId) => {
+    try {
+      console.log(campaignId);  // Debugging: Check if the ID is correct
+      const response = await axios.post('http://localhost:4000/api/campaign/delete', {
+        _id: campaignId  // Ensure the key matches what your backend expects
+      });
+  
+      console.log(response.data); // Debugging: Check response from server
+      setCampaigns((prevCampaigns) => prevCampaigns.filter(campaign => campaign._id !== campaignId)); // Update state
+    } catch (err) {
+      console.error('Failed to delete campaign', err.response ? err.response.data : err.message);
+    }
+  };
+  
+  const handleCompleteCampaigns = async () => {
+    campaigns.forEach(campaign => {
+      if (campaign.moneyCollected >= campaign.goalAmount) {
+        deleteCampaign(campaign._id);
+      }
+    });
+  };
   useEffect(() => {
     fetchCampaigns();
   }, []);
+  useEffect(() => {
+    handleCompleteCampaigns();  // Check for completed campaigns after campaigns are fetched
+  }, [campaigns]);
 
   // Function to handle redirection based on token cookie presence
   const handleClick = () => {

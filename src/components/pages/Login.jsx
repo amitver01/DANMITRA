@@ -36,8 +36,8 @@ export default function LoginPage() {
       );
 
       const { token, donor } = response.data;
-      alert('Login success');
-      console.log(donor);
+      
+      //console.log(donor);
       // After successful login
     
 
@@ -57,7 +57,7 @@ export default function LoginPage() {
   // Call login method from UserContext and pass user data
 
       // Set redirect to navigate
-      setRedirect('/profile'); 
+      setRedirect('/'); 
     } catch (e) {
       console.error('Login failed:', e.response ? e.response.data : e.message);
       alert('Login failed');
