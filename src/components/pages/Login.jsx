@@ -35,9 +35,9 @@ export default function LoginPage() {
         { withCredentials: true } // Ensure cookies are sent with requests
       );
 
-      const { token, donor } = response.data;
+      const { token, donor , organization} = response.data;
       
-      //console.log(donor);
+     // console.log(donor);
       // After successful login
     
 
@@ -52,10 +52,14 @@ export default function LoginPage() {
 
       // Store token and donorId in cookies
       Cookies.set('token', token , { expires: 1 }); // Set cookie to expire in 1 day
+      if(role == 'donors'){
+      Cookies.set('role' , 'donors' , {expires:1});
       Cookies.set('userID' , donor._id , {expires: 1});
-      // Update UserContext with user details
-  // Call login method from UserContext and pass user data
-
+      }else{
+        //console.log(organization)
+        Cookies.set('userID' , organization._id , {expires: 1});
+        Cookies.set('role' , 'org' , {expires:1});
+      }
       // Set redirect to navigate
       setRedirect('/'); 
     } catch (e) {

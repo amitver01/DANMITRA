@@ -12,9 +12,10 @@ const Profile = () => {
   useEffect(() => {
     const fetchDonorDetails = async () => {
       const token = Cookies.get('token');
-      const donorId = Cookies.get('userID'); // Get donor ID from context
+      const Id = Cookies.get('userID');
+      const role= Cookies.get('role') // Get donor ID from context
      // console.log(donorId);
-      if (!donorId) {
+      if (!Id) {
         navigate('/login')
         setError('Authentication details are missing');
         setLoading(false);
@@ -22,16 +23,23 @@ const Profile = () => {
       }
 
       try {
-        const response = await axios.post('http://localhost:4000/api/donors/searchDonor', 
-          { _id: donorId }, 
+        const response = await axios.post(
+          `http://localhost:4000/api/${role}/search`, 
+          { _id: Id }, 
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include token in the Authorization header
             },
           }
         );
-
-        setDonor(response.data.donor); // Update state with the fetched donor data
+        if(role == 'donors'){
+          setDonor(response.data.donor);
+         // console.log(response.data.donor);
+        }else{
+          setDonor(response.data.organization);
+         // console.log(response.data.organization);
+        }
+         // Update state with the fetched donor data
         setLoading(false);
       } catch (error) {
         console.error('Error fetching donor details:', error);
@@ -68,7 +76,10 @@ const Profile = () => {
   }
   const handleLogout = () => {
     Cookies.remove('token'); // Remove the token cookie
-    Cookies.remove('userID'); // Remove the userID cookie
+    Cookies.remove('userID'); 
+    Cookies.remove('role');
+    
+    // Remove the userID cookie
     navigate('/'); // Optionally navigate to the homepage after logout
   };
 
@@ -76,7 +87,7 @@ const Profile = () => {
     <div className='w-full h-full bg-zinc-900 pt-20'>
       <div className='text-blue-800 text-center text-4xl font-semibold mb-4'>Profile</div>
       <div className='max-w-md mx-auto bg-zinc-800 rounded-lg shadow-lg text-white p-4'>
-        <h2 className='text-2xl text-center font-semibold mb-4'>Donor Information</h2>
+        <h2 className='text-2xl text-center font-semibold mb-4'>Information</h2>
         <div className='mb-3'>
           <strong>Name: </strong> {donor.name}
         </div>
