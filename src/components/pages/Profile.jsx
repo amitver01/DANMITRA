@@ -25,12 +25,7 @@ const Profile = () => {
       try {
         const response = await axios.post(
           `http://localhost:4000/api/${role}/search`, 
-          { _id: Id }, 
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Include token in the Authorization header
-            },
-          }
+          { _id: Id }
         );
         if(role == 'donors'){
           setDonor(response.data.donor);

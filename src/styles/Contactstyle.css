@@ -1,0 +1,39 @@
+/* Contactstyle.css */
+
+/* Marquee for the Quotes Section */
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: marquee 10s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Styling for the Form */
+  input,
+  textarea {
+    border: 1px solid #555;
+  }
+  
+  button {
+    background-color: #3b82f6; /* Blue 400 */
+    border: none;
+  }
+  
+  button:hover {
+    background-color: #2563eb; /* Blue 500 */
+  }
+  
+  /* Form and Contact Info Section */
+  .bg-gray-800 {
+    background-color: #1f2937; /* Dark gray for background */
+  }
+  
+  .bg-gray-700 {
+    background-color: #374151; /* Slightly lighter dark gray for inputs */
+  }
+  

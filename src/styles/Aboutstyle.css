@@ -1,0 +1,30 @@
+
+.marquee {
+    animation: marquee 15s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .text-blue-400 {
+    color: #2DC7FF; /* Turquoise Blue */
+  }
+  
+  .text-lime-400 {
+    color: #A4C639; /* Lime Green */
+  }
+  
+  .text-turquoise-400 {
+    color: #2DC7FF; /* Turquoise Blue */
+  }
+  
+  .text-orange-400 {
+    color: #FF6F3C; /* Bright Orange */
+  }
+  

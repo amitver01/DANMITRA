@@ -10,9 +10,11 @@ import Contact from './components/pages/Conatct'
 import Footer from './components/Footer';
 import Login from './components/pages/Login'
 import SignUp from './components/pages/SignUp'
+import SignUpOrg from '../src/components/pages/SignUpOrg'
 import Profile from './components/pages/Profile';
 import Payment from './components/pages/Payment';
-
+import CampaignAdd from './components/pages/CampaignAdd'
+import AdminDashboard from './components/pages/Admin/AdminDashBoard';
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -27,6 +29,9 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/payment" element={<Payment/>}/>
+        <Route path="/campaignadd" element={<CampaignAdd/>}/>
+        <Route path="/signuporg" element={<SignUpOrg/>}/>
+        <Route path="/admindashboard" element={<AdminDashboard/>}/>
       </Routes>
       </div>
       <Footer/>
