@@ -7,13 +7,17 @@ const Campaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All'); // New state for category selection
 
   const navigate = useNavigate(); 
   
-  // Function to fetch campaigns
-  const fetchCampaigns = async () => {
+  // Function to fetch campaigns based on category
+  const fetchCampaigns = async (category) => {
     try {
-      const response = await axios.get('http://localhost:4000/api/campaign/campaign'); 
+      const url = category === 'All' ? 
+        'http://localhost:4000/api/campaign/campaign' : 
+        `http://localhost:4000/api/campaign/searchCategory?category=${category}`;
+      const response = await axios.get(url);
       setCampaigns(response.data);
       setLoading(false);
     } catch (err) {
@@ -21,6 +25,7 @@ const Campaign = () => {
       setLoading(false);
     }
   };
+
   const deleteCampaign = async (campaignId) => {
     try {
       console.log(campaignId);  // Debugging: Check if the ID is correct
@@ -34,7 +39,7 @@ const Campaign = () => {
       console.error('Failed to delete campaign', err.response ? err.response.data : err.message);
     }
   };
-  
+
   const handleCompleteCampaigns = async () => {
     campaigns.forEach(campaign => {
       if (campaign.moneyCollected >= campaign.goalAmount) {
@@ -42,9 +47,11 @@ const Campaign = () => {
       }
     });
   };
+
   useEffect(() => {
-    fetchCampaigns();
-  }, []);
+    fetchCampaigns(selectedCategory); // Fetch campaigns based on selected category
+  }, [selectedCategory]); // Fetch campaigns whenever the category changes
+
   useEffect(() => {
     handleCompleteCampaigns();  // Check for completed campaigns after campaigns are fetched
   }, [campaigns]);
@@ -70,10 +77,26 @@ const Campaign = () => {
 
   return (
     <div className='w-full h-full bg-zinc-700 text-slate-400 p-8'>
-      <h1 className='m-20 text-5xl font-bold text-white mb-8 text-center'>Campaignss</h1>
+      <h1 className='m-20 text-5xl font-bold text-white mb-8 text-center'>Campaigns</h1>
+
+      {/* Dropdown for category selection */}
+      <div className='mb-8'>
+        <select 
+          value={selectedCategory} 
+          onChange={(e) => setSelectedCategory(e.target.value)} 
+          className='bg-zinc-800 text-white p-2 rounded'>
+          <option value="All">All Categories</option>
+          <option value="Education">Education</option>
+          <option value="Environment">Environment</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Animals">Animals</option>
+          <option value="Misc">Miscellaneous</option>
+        </select>
+      </div>
+
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
         {campaigns.map((campaign) => (
-          <div key={campaign.id} className='bg-zinc-800 rounded-lg shadow-lg p-6'>
+          <div key={campaign._id} className='bg-zinc-800 rounded-lg shadow-lg p-6'>
             <h2 className='text-xl font-semibold text-white mb-4'>{campaign.name}</h2>
             <p className='text-slate-400 mb-4'>{campaign.description}</p>
             <div className='text-slate-400'>
