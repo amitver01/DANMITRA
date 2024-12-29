@@ -22,7 +22,8 @@ export default function SignUpPage() {
     }
 
     try {
-      const { data } = await axios.post('http://localhost:4000/api/donors/register', {
+      // Updated backend URL for your deployed backend
+      const { data } = await axios.post('https://danamitra-backend-njnpc78ei-amitver6969-gmailcoms-projects.vercel.app/api/donors/register', {
         name,
         email,
         password
@@ -136,4 +137,3 @@ export default function SignUpPage() {
     </div>
   );
 }
-
