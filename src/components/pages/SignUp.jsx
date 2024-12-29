@@ -23,7 +23,7 @@ export default function SignUpPage() {
 
     try {
       // Updated backend URL for your deployed backend
-      const { data } = await axios.post('https://danamitra-backend-njnpc78ei-amitver6969-gmailcoms-projects.vercel.app/api/donors/register', {
+      const { data } = await axios.post('https://danamitra-backend.vercel.app/api/donors/register', {
         name,
         email,
         password

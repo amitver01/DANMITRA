@@ -51,7 +51,7 @@ const Campaign = () => {
   // Delete a campaign
   const deleteCampaign = async (campaignId) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/campaign/delete', {
+      const response = await axios.post('https://danamitra-backend.vercel.app/api/campaign/delete', {
         _id: campaignId,
       });
 

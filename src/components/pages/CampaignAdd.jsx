@@ -19,7 +19,7 @@ export default function CreateCampaignPage() {
 
     try {
       const response = await axios.post(
-        'http://localhost:4000/api/campaign/create', 
+        'https://danamitra-backend.vercel.app/api/campaign/create', 
         {
           name,
           description,

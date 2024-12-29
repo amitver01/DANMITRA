@@ -32,7 +32,7 @@ export default function OrgSignUpPage() {
     }
 
     try {
-      const { data } = await axios.post('http://localhost:4000/api/organizations/register', {
+      const { data } = await axios.post('https://danamitra-backend.vercel.app/api/organizations/register', {
         name,
         email,
         password,
