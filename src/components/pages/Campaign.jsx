@@ -42,12 +42,7 @@ const Campaign = () => {
       <h1 className="m-20 text-5xl font-bold text-white mb-8 text-center">Campaigns</h1>
 
       <div className="mb-8 text-center">
-        <button
-          onClick={handleClickCampaigns}
-          className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500"
-        >
-          Load Campaigns
-        </button>
+        
 
         <select
           value={selectedCategory}
