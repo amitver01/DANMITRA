@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Loader from './Loader';
+import Loader from '../Loader';
 
 const Campaign = () => {
   const [campaigns, setCampaigns] = useState([]);
