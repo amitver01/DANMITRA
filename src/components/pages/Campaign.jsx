@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
+import Loader from '../Loader';
 
 const stripePromise = loadStripe('pk_test_51Kq34DAAUyqQ9D2Qg3e4RhwFrtsK8QtUkg28KOZ5CRFFUa50BBkzjZaulWLvd058TbrophUGRZtrPjk25Ploh9To00vXLv8YD'); // Replace with your Stripe publishable key
 
@@ -84,7 +85,11 @@ const Campaign = () => {
   }, [campaigns]);
 
   if (loading) {
-    return <div className="w-full h-full bg-zinc-900 text-slate-400">Loading campaigns...</div>;
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-slate-400">
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {
